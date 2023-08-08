@@ -1,25 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles.css'
+import * as vars from "./constants";
+import {letters} from "./constants";
+function MyButton(){
+    let content;
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    if(vars.borderCurve === "border") {
+        content = <section>Hello</section>;
+    } else {
+        content = <section>Hi</section>;
+    }
+
+    return (
+        <div>
+            {content}
+            <p>Placeholder {vars.borderCurve==='border-curve'?("Yes"):('No')}</p>
+            <button className={vars.borderCurve}>Button Component</button>
+        </div>
+    );
 }
 
-export default App;
+function Letters(){
+    const listItems = letters.map(iterate =>
+        <li
+            key = {iterate.id}
+            style = {{
+                color: iterate.show ? 'red' : 'blue'
+            }}
+        >
+            {iterate.title}
+        </li>
+    );
+
+    return (
+        <ul>{listItems}</ul>
+    )
+}
+
+function AlertButton(){
+    function handleClick(){
+        alert('Working...');
+    }
+
+    return (
+        <button className={vars.borderCurve} onClick={handleClick}>
+            Is it Working?
+        </button>
+    )
+}
+
+export default function MyApp(){
+  return (
+      <div>
+        <h1>
+          Welcome
+        </h1>
+        <MyButton />
+          {vars.borderCurve}
+          <Letters />
+          <AlertButton />
+      </div>
+  );
+}
