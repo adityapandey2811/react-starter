@@ -1,6 +1,9 @@
 import './styles.css'
 import * as vars from "./constants";
 import {letters} from "./constants";
+import {StateUpdateButton} from "./states/IndividualStates";
+import {useState} from "react";
+import {StateUpdateButtonCommon} from "./states/CommonStatus";
 function MyButton(){
     let content;
 
@@ -49,6 +52,12 @@ function AlertButton(){
 }
 
 export default function MyApp(){
+
+    const [countCommon, setCountCommon] = useState(0);
+    function handleClick() {
+        setCountCommon(countCommon + 1);
+    }
+
   return (
       <div>
         <h1>
@@ -58,6 +67,9 @@ export default function MyApp(){
           {vars.borderCurve}
           <Letters />
           <AlertButton />
+          <StateUpdateButton />
+          <StateUpdateButtonCommon count={countCommon} onClick={handleClick}/>
+          <StateUpdateButtonCommon count={countCommon} onClick={handleClick}/>
       </div>
   );
 }
