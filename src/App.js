@@ -51,6 +51,7 @@ function AlertButton(){
     )
 }
 
+// Here default just means it is the main function of the code
 export default function MyApp(){
 
     const [countCommon, setCountCommon] = useState(0);
